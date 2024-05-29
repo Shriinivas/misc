@@ -37,6 +37,10 @@ To use the script, you need to provide it with the path to the image you want to
 
 #### Optional Flags
 
+The default setup is to make the render as close to the natural appearance of the image - i.e. as it would appear in an image processing app - as possible.
+
+(Flags are specified without leading -)
+
 - `keep_cube`: Keep the default cube in the scene.
 - `no_emit`: Use a principled shader instead of an emission shader for the imported plane.
 - `no_res`: Do not adjust the render resolution based on the image.
