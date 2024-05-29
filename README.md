@@ -32,7 +32,7 @@ The `blenderimagelauncher.py` script is for launching Blender and setting up a s
 To use the script, you need to provide it with the path to the image you want to import into Blender. You can also specify various flags to control the script's behavior.
 
 ```
-   ./blenderimagelauncher.py /path/to/your/image.jpg <optional_flags>
+   blenderimagelauncher.py <image_path> <optional-flags>
 ```
 
 #### Optional Flags
