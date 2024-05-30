@@ -10,7 +10,7 @@ import sys, os
 from typing import List
 
 
-def launch(args: List[str], term="") -> None:
+def launch(args: List[str], term: str) -> None:
     """Launch Blender with specified arguments in a detached process.
 
     Args:
@@ -156,28 +156,25 @@ def setup(
 if __name__ == "__main__":
     args = sys.argv[1:]
 
-    if len(args) == 0:
-        print(
-            f"Usage: {os.path.basename(__file__)} /path/to/your/image.[jpg, png etc.] <optional_flags>"
-        )
-    elif "embedded" in args:
+    if "embedded" in args:
         args = args[args.index("embedded") + 1 :]
-        print(args)
-        if len(args) > 0:
-            image_path = args[0]
-            keep_cube = "keep_cube" in args
-            no_emit = "no_emit" in args
-            no_res = "no_res" in args
-            no_view = "no_view" in args
-            no_camera = "no_camera" in args
-            no_light = "no_light" in args
-            setup(image_path, keep_cube, no_emit, no_res, no_view, no_camera, no_light)
+
+        flags = [False] * 6  # keep_cube, no_emit, no_res, no_view, no_camera, no_light
+        opts = {"-kc": 0, "-ne": 1, "-nr": 2, "-nv": 3, "-nc": 4, "-nl": 5}
+
+        image_path = None
+        for arg in args:
+            if arg in opts:
+                flags[opts[arg]] = True
+            elif not arg.startswith("-"):
+                image_path = arg
+
+        if image_path:
+            setup(image_path, *flags)
+        else:
+            script_name = os.path.basename(__file__)
+            print(f"Usage: {script_name} <optional_flags> /path/to/your/image_or_video")
     else:
-        term = ""
-        if "--term" in args:
-            idx = args.index("--term")
-            if len(args) > idx + 1:
-                term = args[idx + 1]
-                args.remove("--term")
-                args.remove(term)
+        terms = [a for a in args if a.startswith("-term=")]
+        term = terms[0].split("=")[1] if terms else ""
         launch(args, term)

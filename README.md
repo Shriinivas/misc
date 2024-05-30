@@ -4,28 +4,29 @@ This repository contains a collection of assorted utilities designed to simplify
 
 ## Blender Image Launcher
 
-The `blenderimagelauncher.py` script is for launching Blender and setting up a scene to include an image imported as a plane from command-line. This script allows users to adjust scene settings like camera placement, lighting, and deleting the default cube as command-line arguments.
+The `blenderimagelauncher.py` script automates the creation of a Blender scene by importing an image or video as a plane. It adjusts several settings to make the render look as natural as possible, similar to its appearance in image/video processing apps. Each adjustment can be toggled via command-line arguments.
+
+- Remove the default cube
+- Use emission shader for plane and import the plane with Z+ up axis
+- Change render resolution to match the image dimensions
+- Change the view to orthographic top
+- Change the camera type to orthographic and adjust the orthographic scale to fit the image
+- Change the world lighting to use emission shader with zero strength
 
 ### Installation
 
-#### Linux
-
-1. Download the script:
+1. Download the script using `wget`:
    ```bash
     wget https://raw.githubusercontent.com/Shriinivas/misc/master/blenderimagelauncher.py
    ```
-2. Make the script executable:
-   ```bash
-    chmod +x blender_image_launcher.py
-   ```
-
-#### Windows
-
-1. Download the script from the following URL:
+   Alternatively, download it from the URL:
    ```
     https://raw.githubusercontent.com/Shriinivas/misc/master/blenderimagelauncher.py
    ```
-2. Ensure the script is runnable from the command line. You may need to associate .py files with Python or run them directly from the command prompt with `python blenderimagelauncher.py`.
+2. Make the script executable (Linux):
+   ```bash
+   chmod +x blenderimagelauncher.py
+   ```
 
 ### Usage
 
@@ -37,17 +38,29 @@ To use the script, you need to provide it with the path to the image you want to
 
 #### Optional Flags
 
-The default setup is to make the render as close to the natural appearance of the image - i.e. as it would appear in an image processing app - as possible.
+The flags can be specified before or after the image.
 
-(Flags are specified without leading -)
+- `-kc`: Keep the default cube in the scene.
+- `-ne`: Use a principled shader instead of an emission shader for the imported plane.
+- `-nr`: Do not adjust the render resolution based on the image.
+- `-nv`: Do not adjust the view to fit the imported image.
+- `-nc`: Do not adjust camera settings.
+- `-nl`: Do not modify the default lighting setup.
+- `-term=<terminal>`: Specify an alternative terminal for launching Blender.
 
-- `keep_cube`: Keep the default cube in the scene.
-- `no_emit`: Use a principled shader instead of an emission shader for the imported plane.
-- `no_res`: Do not adjust the render resolution based on the image.
-- `no_view`: Do not adjust the view to fit the imported image.
-- `no_camera`: Do not adjust camera settings.
-- `no_light`: Do not modify the default lighting setup.
-- `--term [terminal]`: Specify an alternative terminal for launching Blender.
+#### Examples
+
+# Launch with default settings but keep the default lighting
+
+```
+blenderimagelauncher.py /path/to/image_or_video -nl
+```
+
+# Use a principled shader and do not change the camera settings and launch in `kitty`
+
+```
+blenderimagelauncher.py -term=kitty -ne -nc /path/to/image_or_video
+```
 
 ## Disclaimer
 
