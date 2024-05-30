@@ -36,6 +36,8 @@ To use the script, you need to provide it with the path to the image you want to
    blenderimagelauncher.py <image_or_video_path> <optional-flags>
 ```
 
+You can also open an SVG file (the script will convert it to png on the fly) provided you have cairosvg installed (`pip install cairosvg`)
+
 #### Optional Flags
 
 The flags can be specified before or after the image.

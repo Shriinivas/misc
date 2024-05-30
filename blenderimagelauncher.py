@@ -153,6 +153,15 @@ def setup(
         world.node_tree.links.new(node.outputs["Emission"], output.inputs["Surface"])
 
 
+def svg_to_temp_png(svg_file: str) -> str:
+    import cairosvg
+    import tempfile
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as temp_file:
+        cairosvg.svg2png(url=svg_file, write_to=temp_file.name)
+        return temp_file.name
+
+
 if __name__ == "__main__":
     args = sys.argv[1:]
 
@@ -170,6 +179,8 @@ if __name__ == "__main__":
                 image_path = arg
 
         if image_path:
+            if image_path.endswith(".svg"):
+                image_path = svg_to_temp_png(image_path)
             setup(image_path, *flags)
         else:
             script_name = os.path.basename(__file__)
