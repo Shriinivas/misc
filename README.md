@@ -4,7 +4,7 @@ This repository contains a collection of assorted utilities designed to simplify
 
 ## Blender Image Launcher
 
-The `blenderimagelauncher.py` script automates the creation of a Blender scene by importing an image or video as a plane. It adjusts several settings to make the render look as natural as possible, similar to its appearance in image/video processing apps. Each adjustment can be toggled via command-line arguments.
+The `blenderimagelauncher.py` script allows the user to launch blender and import an image or video as a plane directly from command line. It also adjusts several settings to make the render look as natural as possible, similar to its appearance in image/video processing apps. Each adjustment can be toggled via command-line arguments.
 
 - Remove the default cube
 - Use emission shader for plane and import the plane with Z+ up axis
@@ -30,10 +30,10 @@ The `blenderimagelauncher.py` script automates the creation of a Blender scene b
 
 ### Usage
 
-To use the script, you need to provide it with the path to the image you want to import into Blender. You can also specify various flags to control the script's behavior.
+To use the script, you need to provide it with the path to the image you want to import into Blender. You can also specify various flags to control the script's behavior. (Feel free to rename the script as per your convenience :)
 
 ```
-   blenderimagelauncher.py <image_path> <optional-flags>
+   blenderimagelauncher.py <image_or_video_path> <optional-flags>
 ```
 
 #### Optional Flags
@@ -50,16 +50,24 @@ The flags can be specified before or after the image.
 
 #### Examples
 
-# Launch with default settings but keep the default lighting
+##### Launch with default settings but keep the default lighting
 
 ```
 blenderimagelauncher.py /path/to/image_or_video -nl
 ```
 
-# Use a principled shader and do not change the camera settings and launch in `kitty`
+##### Use a principled shader and do not change the camera settings and launch in `kitty`
 
 ```
 blenderimagelauncher.py -term=kitty -ne -nc /path/to/image_or_video
+```
+
+#### Bonus Tip for `ranger` Users
+
+Add the following line in `rc.conf` to open the selected image in Blender by pressing the shortcut (e.g. space-o-b)
+
+```
+map <space>ob shell blenderimagelauncher.py %d/%f  &>/dev/null & disown
 ```
 
 ## Disclaimer
