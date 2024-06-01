@@ -75,3 +75,7 @@ map <space>ob shell blenderimagelauncher.py %d/%f  &>/dev/null & disown
 ## Disclaimer
 
 The scripts and apps in this collection are in continuous development and have not been extensively tested. They are provided as-is, without warranty of any kind. Users should use them with caution and are encouraged to report any issues.
+
+## License
+
+[GPL 3.0](./LICENSE)
