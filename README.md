@@ -4,7 +4,7 @@ This repository contains a collection of assorted utilities designed to simplify
 
 ## Blender Image Launcher
 
-The `blenderimagelauncher.py` script allows the user to launch blender and import an image or video as a plane directly from command line. It also adjusts several settings to make the render look as natural as possible, similar to its appearance in image/video processing apps. Each adjustment can be toggled via command-line arguments.
+The `blenderimagelauncher.py` script allows the user to launch blender and import an image, video (as plane via Import Image as Plane add-on) or svg (as Bezier curves via Import SVG add-on) directly from command line. It also adjusts several settings to make the render look as natural as possible, similar to its appearance in image/video processing apps. Each adjustment can be toggled via command-line arguments.
 
 - Remove the default cube
 - Use emission shader for plane and import the plane with Z+ up axis
@@ -12,6 +12,8 @@ The `blenderimagelauncher.py` script allows the user to launch blender and impor
 - Change the view to orthographic top
 - Change the camera type to orthographic and adjust the orthographic scale to fit the image
 - Change the world lighting to use emission shader with zero strength
+- Disable splash screen
+- Enable splash screen
 
 ### Installation
 
@@ -36,8 +38,6 @@ To use the script, you need to provide it with the path to the image you want to
    blenderimagelauncher.py <image_or_video_path> <optional-flags>
 ```
 
-You can also open an SVG file (the script will convert it to png on the fly) provided you have cairosvg installed (`pip install cairosvg`)
-
 #### Optional Flags
 
 The flags can be specified before or after the image.
@@ -48,6 +48,8 @@ The flags can be specified before or after the image.
 - `-nv`: Do not adjust the view to fit the imported image.
 - `-nc`: Do not adjust camera settings.
 - `-nl`: Do not modify the default lighting setup.
+- `-ds`: Disable splash screen
+- `-es`: Enable splash screen
 - `-term=<terminal>`: Specify an alternative terminal for launching Blender.
 
 #### Examples
@@ -55,13 +57,13 @@ The flags can be specified before or after the image.
 ##### Launch with default settings but keep the default lighting
 
 ```
-blenderimagelauncher.py /path/to/image_or_video -nl
+blenderimagelauncher.py /path/to/image_or_video_or_svg -nl
 ```
 
 ##### Use a principled shader and do not change the camera settings and launch in `kitty`
 
 ```
-blenderimagelauncher.py -term=kitty -ne -nc /path/to/image_or_video
+blenderimagelauncher.py -term=kitty -ne -nc /path/to/image_or_video_or_svg
 ```
 
 #### Bonus Tip for `ranger` Users
