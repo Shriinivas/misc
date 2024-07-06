@@ -79,9 +79,7 @@ blenderimagelauncher.py /path/to/folder -margin=0.2 -x_off=0.15 -y_off=0.15
 Add the following line in `rc.conf` to open the selected image in Blender by pressing the shortcut (e.g. space-o-b)
 
 ```
-
 map <space>ob shell blenderimagelauncher.py %d/%f &>/dev/null & disown
-
 ```
 
 ## Disclaimer
