@@ -8,12 +8,9 @@ Author: Shrinivas Kulkarni (khemadeva@gmail.com)
 
 import sys, os
 from types import FunctionType
-from typing import Any, Dict, List, Optional, Set, Tuple
-import bpy
+from typing import Any, Dict, List, Optional, Set, Tuple, cast
 from pathlib import Path
 from glob import glob
-from typing import cast
-import mathutils
 
 
 def launch(args: List[str], term: str) -> None:
@@ -432,6 +429,9 @@ if __name__ == "__main__":
     args = sys.argv[1:]
 
     if "embedded" in args:
+        import bpy
+        import mathutils
+
         args = args[args.index("embedded") + 1 :]
 
         # keep_cube, no_emit, no_res, no_view, no_camera, no_light, dis_spl, en_spl
